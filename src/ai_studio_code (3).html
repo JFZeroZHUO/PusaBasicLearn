@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>社团基础：视听语言-拉片小手册</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <style>
+        /* 还原飞书文档风格的 UI 变量 */
+        :root {
+            --bg-color: #ffffff;
+            --text-main: #1f2329;
+            --text-muted: #8f959e;
+            --link-color: #3370ff;
+            --border-color: #dee0e3;
+            --callout-bg-orange: #fff7e8;
+            --callout-bg-blue: #f0f4ff;
+            --callout-bg-gray: #f4f5f9;
+            --hl-blue: #e1eaff;
+            --hl-green: #d1f2e6;
+            --table-header-bg: #f4f5f9;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Noto Sans SC", "Helvetica Neue", Helvetica, Arial, sans-serif;
+            background-color: #f7f8fa; /* 网页底色 */
+            color: var(--text-main);
+            line-height: 1.85;
+            margin: 0;
+            padding: 40px 15px;
+        }
+
+        .feishu-container {
+            max-width: 900px;
+            margin: 0 auto;
+            background-color: var(--bg-color);
+            padding: 50px 60px;
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+        }
+
+        /* 标题系统 */
+        h1 {
+            font-size: 2.2rem;
+            font-weight: 900;
+            margin-top: 0;
+            margin-bottom: 40px;
+            color: #1f2329;
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 20px;
+        }
+        h2 {
+            font-size: 1.55rem;
+            font-weight: 800;
+            margin-top: 50px;
+            margin-bottom: 25px;
+            color: #1f2329;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        h3 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-top: 40px;
+            margin-bottom: 15px;
+            color: #1f2329;
+        }
+
+        p {
+            margin: 14px 0;
+            color: #333333;
+        }
+
+        a {
+            color: var(--link-color);
+            text-decoration: none;
+            word-break: break-all;
+            font-weight: 500;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+
+        /* ✨ 关键词高亮系统 (优化核心) */
+        strong {
+            font-weight: 700;
+            color: #1f2329;
+        }
+        .hl-blue {
+            background-color: var(--hl-blue);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-weight: 700;
+            color: var(--link-color);
+        }
+        .hl-green {
+            background-color: var(--hl-green);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-weight: 700;
+            color: #047857;
+        }
+        /* 荧光笔涂抹效果 */
+        .hl-yellow {
+            background-image: linear-gradient(transparent 60%, rgba(253, 224, 71, 0.8) 60%);
+            font-weight: 800;
+            color: #1f2329;
+            padding: 0 4px;
+            border-radius: 2px;
+        }
+        /* 文本主题色加粗 */
+        .text-hl {
+            color: var(--link-color);
+            font-weight: 800;
+        }
+        .text-orange {
+            color: #ff7d00;
+            font-weight: 800;
+        }
+        .text-purple {
+            color: #7b61ff;
+            font-weight: 800;
+        }
+
+        /* 引用块 */
+        .quote-block {
+            border-left: 4px solid var(--link-color);
+            background: #f8f9fa;
+            padding: 15px 20px;
+            color: #4a4a4a;
+            margin: 20px 0;
+            border-radius: 0 8px 8px 0;
+            font-size: 1.05rem;
+        }
+
+        /* 任务/提示卡片 (Callout) */
+        .callout {
+            padding: 20px 25px;
+            border-radius: 8px;
+            margin: 25px 0;
+            border: 1px solid transparent;
+        }
+        .callout-orange {
+            background-color: var(--callout-bg-orange);
+            border-color: #ffd6a5;
+        }
+        .callout-blue {
+            background-color: var(--callout-bg-blue);
+            border-color: #c2d1ff;
+        }
+        .callout-gray {
+            background-color: var(--callout-bg-gray);
+            border-color: var(--border-color);
+        }
+
+        /* 列表优化 */
+        ul {
+            padding-left: 25px;
+            margin: 15px 0;
+        }
+        ul li {
+            margin-bottom: 12px;
+        }
+
+        /* 表格样式优化 */
+        .table-wrapper {
+            width: 100%;
+            overflow-x: auto;
+            margin: 30px 0;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.95rem;
+        }
+        th, td {
+            border-bottom: 1px solid var(--border-color);
+            border-right: 1px solid var(--border-color);
+            padding: 16px;
+            text-align: left;
+            vertical-align: top;
+        }
+        th {
+            background-color: var(--table-header-bg);
+            font-weight: 800;
+            color: #1f2329;
+            text-align: center;
+        }
+        td {
+            color: #333333;
+        }
+        tr:last-child td { border-bottom: none; }
+        td:last-child, th:last-child { border-right: none; }
+
+        /* 模拟图片占位图 */
+        .img-placeholder {
+            background-color: #f4f5f9;
+            border: 1px dashed #bbbfc4;
+            border-radius: 8px;
+            text-align: center;
+            color: var(--text-muted);
+            padding: 60px 20px;
+            margin: 25px 0;
+            font-size: 0.95rem;
+        }
+
+        /* 专属黑底文字图模拟 */
+        .black-img-mock {
+            background-color: #141414;
+            color: #f4f5f9;
+            padding: 30px;
+            border-radius: 12px;
+            margin: 25px 0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        .black-img-text {
+            font-size: 1.05rem;
+            line-height: 2.2;
+        }
+        .black-img-text strong {
+            font-size: 1.15rem;
+            color: #fff;
+        }
+
+        @media (max-width: 768px) {
+            .feishu-container {
+                padding: 30px 20px;
+            }
+            h1 { font-size: 1.8rem; }
+            h2 { font-size: 1.4rem; }
+            .black-img-mock { flex-direction: column; align-items: flex-start; gap: 20px; }
+            .black-img-mock > div:last-child { width: 100% !important; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="feishu-container">
+
+    <h1>社团基础：视听语言-拉片小手册</h1>
+
+    <h2>🎯 补课任务 1：认识拉片</h2>
+
+    <p>做了1000个小视频，为什么你还做不出一个<span class="text-hl">电影高级感</span>的片子？</p>
+
+    <div class="callout callout-orange">
+        <p style="margin: 0; font-size: 1.1rem; color: #b45309;">🎈 <em>在这里，读懂影像的秘密</em></p>
+    </div>
+
+    <h3>01 你真的“看懂”电影了吗？</h3>
+    <p>我们先来做一个思想实验：</p>
+    <p>如果你去米其林餐厅吃了一千顿饭，你觉得自己能成为特级厨师吗？<br>大概率不能。你只会成为一个<span class="text-orange">挑剔的美食家</span>。</p>
+    
+    <p>同样的道理：<br><strong>如果你在 Netflix 或电影院看了一千部电影，你能成为导演（哪怕是拍好 Vlog 的博主）吗？</strong><br>也不能。</p>
+    
+    <p>❌ 观众看电影，是在<span class="hl-yellow">“消费”情感</span>。<br>你会哭、会笑、会紧张，完全被剧情牵着鼻子走。</p>
+    
+    <p>✅ 创作者看电影，是在<span class="hl-yellow">“解剖”技术</span>。<br>他们冷酷无情，他们不再关心主角会不会死，他们只关心——<span class="hl-blue">刚才那个镜头，为什么要用广角？</span></p>
+    
+    <p>想从“吃货”变成“厨师”，你需要掌握一项核心技能。<br>在电影圈，它有一个听起来很复古的名字——<strong class="text-hl" style="font-size: 1.2rem;">「拉片」</strong>。</p>
+
+    <div class="img-placeholder">
+        [图片：这才这是电影真正的样子（胶片背景图）]
+    </div>
+
+    <h3>02 什么是“拉片”？Lā Piàn</h3>
+    <p>“拉片”这个词，听起来很物理。</p>
+    <p>它的确源于物理动作：在胶片时代，剪辑师需要在剪辑台上，<span class="text-hl">用手拉动胶片，一格一格地审视画面</span>。</p>
+    <p>放到今天，拉片的定义非常简单粗暴：</p>
+    
+    <div class="quote-block">
+        <strong>把一部电影彻底“拆”开。</strong><br>
+        不再顺着时间线享受剧情，而是每几秒钟就按下暂停键，把电影<span class="text-orange">拆解成几百、上千个独立的镜头</span>。
+    </div>
+
+    <p>如果说看电影是欣赏一座宏伟的建筑，<span class="hl-blue">那么拉片就是把这座楼拆成砖头、钢筋、水泥，然后研究它是怎么盖起来的。</span></p>
+
+    <h3>03 拉片，到底在“拉”什么？</h3>
+    <p>当你开始拉片，你的手边不再是爆米花，而是 <strong class="text-hl">Excel 表格</strong>。</p>
+    <p>你需要<span class="hl-yellow">像做手术一样</span>，记录下每一个镜头的详细参数：</p>
+    
+    <ul style="list-style-type: none; padding-left: 0; background: #f8f9fa; padding: 20px; border-radius: 8px;">
+        <li>📏 <strong class="text-hl">景别：</strong>是怼脸的特写，还是宏大的远景？</li>
+        <li>🎥 <strong class="text-hl">运镜：</strong>摄像机是推拉摇移，还是稳如泰山？</li>
+        <li>💡 <strong class="text-hl">光影：</strong>光是从哪打过来的？是冷酷的蓝还是温暖的黄？</li>
+        <li>🔊 <strong class="text-hl">声音：</strong>这里为什么要加一声沉闷的鼓点？</li>
+        <li>✂️ <strong class="text-hl">剪辑：</strong>为什么在这个瞬间切到了下一个画面？</li>
+    </ul>
+
+    <!-- 黑底画面解析模拟 -->
+    <div class="black-img-mock">
+        <div class="black-img-text">
+            <strong>景别：</strong>特写<br>
+            <strong>运镜：</strong>固定<br>
+            <strong>光影：</strong><span style="color: #93c5fd;">冷蓝色顶光（左上）</span><br>
+            <strong>声音：</strong>沉闷鼓点 <span style="color: #cbd5e1;">(情绪铺垫)</span><br>
+            <strong>剪辑：</strong>此处切至下一个画面 <span style="color: #cbd5e1;">(情节转折)</span>
+        </div>
+        <div style="width: 45%; height: 180px; background: #262626; border: 1px solid #404040; border-radius: 8px; display:flex; align-items:center; justify-content:center; color:#a3a3a3;">[电影特写截图]</div>
+    </div>
+
+    <p>这听起来是不是很枯燥？</p>
+    <p>是的，非常枯燥。 一部90分钟的电影，可能需要你花 10 个小时去拉片。<br>但为什么所有电影学院的学生、所有大导演，都要死磕这件事？</p>
+
+    <h3>04 为什么要自讨苦吃？因为这是“偷师”的唯一捷径</h3>
+    <p>拉片，本质上是一种<span class="hl-yellow">“逆向工程”</span>。</p>
+    <p><span class="hl-blue">当你把经典电影拆解完之后，神奇的事情发生了——你获得了“导演的眼睛”。</span></p>
+
+    <p>🔥 <strong class="text-orange" style="font-size: 1.1rem;">1. 你不再被剧情“欺骗”</strong></p>
+    <p>以前你看恐怖片吓得半死。<br>现在你会想：“哦，这里用了一个<span class="text-hl">‘推镜头+不协和音程’</span>，导演在故意制造压迫感。”<br>你看穿了导演的把戏，你学会了这套把戏。</p>
+
+    <p>🛠️ <strong class="text-purple" style="font-size: 1.1rem;">2. 你拥有了庞大的“素材库”</strong></p>
+    <p>当你自己拍 Vlog、拍短视频，不知道怎么拍“两个人吃饭”时……<br>你脑子里会瞬间弹窗：“王家卫在《花样年华》里是<span class="text-hl">用这个角度拍吃饭的</span>，虽然我现在只有一台手机，但我可以模仿他的构图！”<br>你不再是凭感觉乱拍，你是胸有成竹。</p>
+
+    <p>🧠 <strong class="text-hl" style="font-size: 1.1rem;">3. 你的审美将降维打击</strong></p>
+    <p>你会发现，你拍出来的东西开始有了<span class="hl-yellow">“电影感”</span>。</p>
+    <p><strong>所谓的电影感，不是加个滤镜那么简单。它是<span class="text-hl">节奏</span>、是<span class="text-hl">光线</span>、是<span class="text-hl">视听语言的语法</span>。</strong></p>
+    <p>这些东西，只有通过拉片，才能刻进你的 DNA 里。</p>
+
+    <h3>05 写在最后</h3>
+    <p>有人问：学拉片有什么好处？能赚钱吗？</p>
+    <p>如果你是视频创作者，它能让你的作品<span class="text-orange">从流水账变成“大片”</span>，涨粉变现自然水到渠成。<br>如果你只是普通影迷，它能让你打开新世界的大门。</p>
+    <p>你会发现，以前你看电影只看到了表面的一层皮；学会拉片后，你看到了<span class="hl-yellow">骨骼、经络和灵魂</span>。</p>
+    <p>从今天开始，试着挑一部你最爱的电影，别只带着眼睛，带上笔。<br>相信我，你会重新认识这部电影。</p>
+
+    <hr style="border: 0; border-top: 1px solid var(--border-color); margin: 50px 0;">
+
+    <h2>🎯 补课任务 2：自己拉片</h2>
+
+    <div class="callout callout-gray">
+        <p style="margin-top: 0;">📺 <strong>观看直播回放：【视频拉片解说】</strong></p>
+        <p>👨‍🏫 滋滋老师</p>
+        <p>🎬 直播回放：<a href="https://fclive.pandacollege.cn/p/rYNX8h" target="_blank">https://fclive.pandacollege.cn/p/rYNX8h</a></p>
+        <p style="margin-bottom: 0;">【学员笔记】： <a href="#">📄 滋滋老师：9月24日（周三）</a> <span style="color: #8f959e;">（by：皮皮咩同学）</span></p>
+    </div>
+
+    <h3>🛠️ 实操拉片：【工具使用+拉片】</h3>
+    <p><strong>a. 工具：飞书表格</strong></p>
+    
+    <div class="img-placeholder">
+        [截图：飞书表格工具使用界面演示]
+    </div>
+
+    <h3>🎬 参考：拉片 Excel 模板内容 -《浪浪山的小妖怪》开头部分</h3>
+
+    <div class="table-wrapper">
+        <table>
+            <thead>
+                <tr>
+                    <th width="8%">镜号<br><span style="color:#8f959e;font-weight:normal;font-size:0.85rem;">(必写)</span></th>
+                    <th width="12%">时间<br><span style="color:#8f959e;font-weight:normal;font-size:0.85rem;">可以不写</span></th>
+                    <th width="10%">景别<br><span style="color:#3370ff;font-weight:normal;font-size:0.85rem;">(必写)</span></th>
+                    <th width="12%">运镜<br><span style="color:#3370ff;font-weight:normal;font-size:0.85rem;">(必写)</span></th>
+                    <th width="25%">画面内容<br><span style="color:#3370ff;font-weight:normal;font-size:0.85rem;">(必写，可以简单写)</span></th>
+                    <th width="13%">声音<br><span style="color:#8f959e;font-weight:normal;font-size:0.85rem;">(建议写)</span></th>
+                    <th width="20%">新手分析重点<br><span style="color:#8f959e;font-weight:normal;font-size:0.85rem;">(建议写)</span></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td align="center">1</td>
+                    <td>00:00 -<br>00:18</td>
+                    <td>大远景 →<br>全景</td>
+                    <td>垂直下摇<br>(Tilt Down)</td>
+                    <td>开篇是云雾缭绕的高耸山峰，随着镜头慢慢向下移动，露出陡峭的山崖。片尾字幕出现。最后看见主角挑着担子走在山间小路上。</td>
+                    <td>空灵、悠远的传统民乐（如笙或笛），伴随风声。</td>
+                    <td>【交代环境】 利用<span class="text-hl">长镜头</span>和<span class="text-hl">巨大的高低落差</span>，展现山势的险峻和人的渺小，奠定一种古意、神秘的基调。</td>
+                </tr>
+                <tr>
+                    <td align="center">2</td>
+                    <td>00:19 -<br>00:21</td>
+                    <td>全景<br>(Full Shot)</td>
+                    <td>跟随<br>(Follow)</td>
+                    <td>画面色调突变。主角挑着担子从亮处走进了一片漆黑幽蓝的树林。</td>
+                    <td>音乐变得低沉，出现类似心跳或脚步的节奏声。</td>
+                    <td>【氛围转折】 利用光影和颜色的<span class="text-orange">剧烈反差（白昼→蓝黑）</span>，暗示主角进入了危险或未知的领域（叙事分界点）。</td>
+                </tr>
+                <tr>
+                    <td align="center">3</td>
+                    <td>00:22 -<br>00:27</td>
+                    <td>特写<br>(Close Up)</td>
+                    <td>推进/晃动</td>
+                    <td>镜头聚焦在主角脸上。他神情紧张，眼神左右飘忽，仿佛感觉到了什么。</td>
+                    <td>音乐停止，突出环境的寂静，或只有沉重的呼吸声。</td>
+                    <td>【刻画心理】 通过特写<span class="text-hl">放大面部表情</span>，让观众直接感受到主角的恐惧和不安。</td>
+                </tr>
+                <tr>
+                    <td align="center">4</td>
+                    <td>00:28 -<br>00:31</td>
+                    <td>主观视点<br>/全景</td>
+                    <td>固定/微动</td>
+                    <td>画面展示了主角眼中的树林：树木扭曲、枯瘦，像鬼影一样。</td>
+                    <td>诡异的风声或环境音效加强。</td>
+                    <td>【主观视角】 这不仅仅是拍树，而是拍<span class="hl-yellow">“主角眼里的树”</span>。扭曲的树干外化了主角内心的恐惧。</td>
+                </tr>
+                <tr>
+                    <td align="center">5</td>
+                    <td>00:32 -<br>00:34</td>
+                    <td>中景<br>(Medium Shot)</td>
+                    <td>侧跟拍</td>
+                    <td>主角继续前行，但他突然停步或迟疑，警惕地看向前方。</td>
+                    <td>突然出现一声尖锐或异样的音效（提示危险临近）。</td>
+                    <td>【动作反应】 通过人物的<span class="text-hl">停顿</span>，提示观众：前方有东西出现了。</td>
+                </tr>
+                <tr>
+                    <td align="center">6</td>
+                    <td>00:35 -<br>00:40</td>
+                    <td>远景<br>(Long Shot)</td>
+                    <td>固定镜头</td>
+                    <td>树林深处，一块石头上蹲坐着一个黑色的剪影（类似狐狸或书生），背对着主角。</td>
+                    <td>寂静，充满压迫感。</td>
+                    <td>【悬念揭示】 利用<span class="text-purple">中心构图和剪影效果</span>，营造强烈的神秘感。观众和主角一样，都在猜测“那是什么？”</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="callout callout-blue">
+        <p style="color: #3370ff; font-weight: 800; font-size: 1.15rem; margin-top: 0;">🎈 作业 1：拉片-表格模板</p>
+        <p>参考上边的表格，创建一个 Excel 表格文档，找一个很短很短的优秀片段，简单做个拉片分析；</p>
+        <p><strong class="text-orange">至少分析 4 个镜头！</strong></p>
+        <p>>> 提交到作业《补基础1123：拉片表格》：<br>
+        <a href="https://forchangesz.feishu.cn/share/base/form/shrcnyEngJJgSJqdnp1FbMfizjf" target="_blank">https://forchangesz.feishu.cn/share/base/form/shrcnyEngJJgSJqdnp1FbMfizjf</a></p>
+        
+        <div style="background: #ffffff; padding: 15px; border-radius: 8px; margin-top: 20px;">
+            <p style="color: var(--text-muted); margin-top: 0; font-size: 0.95rem;"><em>如果你不知道要分析哪些视频，老师推荐 2 个最佳获奖短片：</em></p>
+            <p style="margin-bottom: 5px; font-size: 0.95rem;">🎬 <em>《暴雪南风》：<a href="https://www.bilibili.com/video/BV1XZ4y1q7QN/?spm_id_from=333.337.search-card.all.click&vd_source=2cd6a2c3beef469d51e95258f7a0724f" target="_blank">点击前往 Bilibili 观看</a></em></p>
+            <p style="margin-bottom: 0; font-size: 0.95rem;">🎬 <em>奥斯卡动画短片《鹬》：<a href="https://www.bilibili.com/video/BV1BZ4y1H79N/?spm_id_from=333.337.search-card.all.click&vd_source=2cd6a2c3beef469d51e95258f7a0724f" target="_blank">点击前往 Bilibili 观看</a></em></p>
+        </div>
+    </div>
+
+    <hr style="border: 0; border-top: 1px solid var(--border-color); margin: 50px 0;">
+
+    <h2>🎯 补课任务 3：看别人拉片子</h2>
+    <p>第92届奥斯卡颁奖典礼公布了所有获奖的作品。在众多获奖者中，韩国导演<strong class="text-hl">奉俊昊</strong>以及其执导的电影<strong class="text-hl">《寄生虫》</strong>，一举获得包含“奥斯卡最佳影片”“最佳国际影片”“最佳剧本”“最佳导演”在内的四个含金量极高的奖项。</p>
+
+    <div class="callout callout-blue">
+        <p style="color: #3370ff; font-weight: 800; font-size: 1.15rem; margin-top: 0;">🎈 作业 2：11月30日，周日前完成（无需提交）</p>
+        <p style="margin-bottom: 0;"><strong>《寄生虫》拉片分析</strong>，观看地址：<a href="https://www.bilibili.com/video/BV1w84y1n7yG/?spm_id_from=333.337.search-card.all.click&vd_source=2cd6a2c3beef469d51e95258f7a0724f" target="_blank">点击前往 Bilibili 观看</a></p>
+    </div>
+
+    <hr style="border: 0; border-top: 1px solid var(--border-color); margin: 50px 0;">
+
+    <h2>🚩 选修：视听语言入门基础</h2>
+
+    <div class="img-placeholder" style="padding: 100px 20px;">
+        [视频封面图：AI 影像课程 - 1]
+    </div>
+
+    <h3>📖 视听语言的拆解 —— 像学一门外语一样学影像</h3>
+    
+    <ol style="background: #f8f9fa; padding: 25px 25px 25px 45px; border-radius: 8px;">
+        <li style="margin-bottom: 20px;"><strong>理论基石：电影符号学（麦茨）</strong>
+            <ul style="margin-top: 10px;">
+                <li><strong>核心观点：</strong>视听语言是一种“语言”，有其基本的构成单位、语法和修辞。我们学习它，就是在学习<span class="hl-green">如何与观众进行非言语的、情感和意义的沟通</span>。</li>
+            </ul>
+        </li>
+        <li style="margin-bottom: 20px;"><strong>视听语言的三大构成（与语言学类比）：</strong>
+            <ul style="margin-top: 10px;">
+                <li><strong class="text-hl">视听元素</strong> (构图、镜头、光线、色彩、声音) = <strong>字/词</strong> (Vocabulary)</li>
+                <li><strong class="text-hl">场面调度</strong> (演员、道具、环境的安排) = <strong>语境</strong> (Context)</li>
+                <li><strong class="text-hl">剪辑</strong> (镜头的组接与节奏) = <strong>语法与修辞</strong> (Grammar & Rhetoric)</li>
+            </ul>
+        </li>
+        <li><strong>教学方法：追溯“电影史上的第一次”（案例教学）</strong>
+            <ul style="margin-top: 10px;">
+                <li><strong>运镜：</strong>史上第一个移动镜头<span class="hl-yellow">（船上拍运河）</span>，理解“动态”带来的突破。</li>
+                <li><strong>镜头：</strong>史上第一个特写镜头<span class="hl-yellow">《祖母的放大镜》</span>，理解“景别”带来的情感冲击。</li>
+                <li><strong>声音：</strong>史上第一部有声电影<span class="hl-yellow">《爵士歌手》</span>，理解“声音”如何改变叙事。</li>
+                <li><strong>色彩：</strong>史上第一部彩色片《浮华世界》与色彩运用典范《红色沙漠》，理解“色彩”的情绪表达力。</li>
+                <li><strong>剪辑：</strong>
+                    <ul style="list-style-type: square;">
+                        <li>第一次“剪”：梅里爱《消失的女子》（停机再拍），理解<span class="text-orange">剪辑的魔术性</span>。</li>
+                        <li>第一次“辑”：鲍特《消防员的生活》（多场景组接），理解<span class="text-orange">剪辑的叙事功能</span>。</li>
+                    </ul>
+                </li>
+            </ul>
+        </li>
+    </ol>
+
+    <h3>📺 视听语言的案例演示</h3>
+    
+    <div class="callout callout-gray" style="margin-bottom: 15px;">
+        <p style="margin: 0;">🎬 <strong>直播回放：<a href="#">视听语言课入门</a></strong></p>
+    </div>
+
+    <div class="table-wrapper">
+        <table>
+            <thead>
+                <tr>
+                    <th width="25%">案例赏析</th>
+                    <th width="25%">出图小技巧</th>
+                    <th width="25%">suno 音乐小技巧</th>
+                    <th width="25%">视频镜头的设计思路</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <p style="margin-top:0;"><strong>1小时爱情反转 AI 音乐 MV</strong></p>
+                        <p style="color: #64748b; font-size: 0.9rem;">江西省政府与上市集团的影视集群园区合作</p>
+                    </td>
+                    <td>
+                        <ol style="padding-left: 15px; margin: 0;">
+                            <li>MJ 里如何<span class="text-hl">控制角色一致性</span>？</li>
+                            <li>大力宗：MJ 如何一次性<span class="text-hl">批量出几十上百张图</span>？</li>
+                            <li>绝妙的同构图设计，即梦是如何实现的？</li>
+                        </ol>
+                    </td>
+                    <td>
+                        <ol style="padding-left: 15px; margin: 0;">
+                            <li>王菲风格、萨顶顶风格的音乐，怎么写？</li>
+                            <li><span class="text-purple">歌词押韵</span>怎么做？</li>
+                        </ol>
+                    </td>
+                    <td>
+                        <ol style="padding-left: 15px; margin: 0;">
+                            <li>四段式的镜头空间关系</li>
+                            <li><strong>创作思维：</strong>整段视频的故事性主题，视频镜头应如何设计和串联</li>
+                            <li><span class="text-orange">快闪镜头</span>的技巧和应用</li>
+                        </ol>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+</div>
+
+</body>
+</html>

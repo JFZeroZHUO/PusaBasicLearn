@@ -1,0 +1,437 @@
+.lesson-page {
+  min-height: 100vh;
+  padding: 20px;
+}
+
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.back-btn {
+  background: none;
+  border: none;
+  font-size: 16px;
+  color: var(--primary-color);
+  cursor: pointer;
+  margin-bottom: 20px;
+  padding: 0;
+}
+
+.back-btn:hover {
+  text-decoration: underline;
+}
+
+.lesson-header {
+  margin-bottom: 20px;
+}
+
+.lesson-header h1 {
+  margin-bottom: 10px;
+  font-size: 28px;
+}
+
+.lesson-subtitle {
+  font-size: 16px;
+  color: var(--text-secondary);
+  margin-bottom: 15px;
+}
+
+.lesson-meta {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--text-secondary);
+  font-size: 14px;
+}
+
+.badge {
+  padding: 4px 12px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.badge.required {
+  background: #e6f7ff;
+  color: var(--primary-color);
+}
+
+.badge.elective {
+  background: #fff7e6;
+  color: var(--warning-color);
+}
+
+.lesson-content {
+  margin-bottom: 20px;
+}
+
+.lesson-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.lesson-item {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 15px;
+  background: #f8f9fa;
+  border-radius: 8px;
+  border-left: 3px solid var(--primary-color);
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.lesson-item:hover {
+  background: #e6f7ff;
+  transform: translateX(4px);
+}
+
+.lesson-item.elective {
+  border-left-color: var(--warning-color);
+}
+
+.lesson-number {
+  width: 32px;
+  height: 32px;
+  background: var(--primary-color);
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  flex-shrink: 0;
+}
+
+.lesson-item.elective .lesson-number {
+  background: var(--warning-color);
+}
+
+.lesson-info {
+  flex: 1;
+}
+
+.lesson-info h4 {
+  margin: 0 0 5px 0;
+  font-size: 16px;
+}
+
+.lesson-info p {
+  margin: 0;
+  font-size: 14px;
+  color: var(--text-secondary);
+}
+
+.lesson-meta {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 13px;
+  color: var(--text-secondary);
+}
+
+.elective-tag {
+  padding: 2px 8px;
+  background: #fff7e6;
+  color: var(--warning-color);
+  border: 1px solid #ffe58f;
+  border-radius: 4px;
+  font-size: 11px;
+}
+
+.lesson-arrow {
+  font-size: 20px;
+  color: var(--primary-color);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.lesson-item:hover .lesson-arrow {
+  opacity: 1;
+}
+
+.lesson-actions {
+  margin-top: 30px;
+  padding-top: 20px;
+  border-top: 1px solid var(--border-color);
+  display: flex;
+  gap: 10px;
+}
+
+.lesson-nav {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+/* 课程详细内容样式 */
+.course-detail {
+  margin-bottom: 30px;
+  padding: 20px;
+  background: #fafafa;
+  border-radius: 8px;
+  border-left: 4px solid var(--primary-color);
+}
+
+.course-detail.elective {
+  border-left-color: var(--warning-color);
+  background: #fffbf0;
+}
+
+.course-detail h3 {
+  margin-top: 0;
+  margin-bottom: 20px;
+  font-size: 20px;
+  color: var(--primary-color);
+}
+
+.course-detail h4 {
+  margin-top: 20px;
+  margin-bottom: 12px;
+  font-size: 16px;
+  color: #333;
+}
+
+.course-detail h5 {
+  margin-top: 18px;
+  margin-bottom: 10px;
+  font-size: 15px;
+  color: #555;
+}
+
+.course-detail h6 {
+  margin-top: 15px;
+  margin-bottom: 8px;
+  font-size: 14px;
+  color: #666;
+}
+
+.sub-section {
+  margin-top: 15px;
+  padding: 15px;
+  background: white;
+  border-radius: 6px;
+}
+
+/* 视频资源样式 */
+.video-resource {
+  margin-bottom: 15px;
+  padding: 15px;
+  background: white;
+  border-radius: 6px;
+  border: 1px solid #e8e8e8;
+}
+
+.video-resource p {
+  margin: 5px 0;
+}
+
+/* 作业样式 */
+.assignment {
+  margin-top: 15px;
+  padding: 15px;
+  background: #f0f7ff;
+  border-radius: 6px;
+  border-left: 3px solid #1890ff;
+}
+
+.assignment.elective {
+  background: #fff7e6;
+  border-left-color: #fa8c16;
+}
+
+/* 提示框样式 */
+.tip-box {
+  margin-top: 15px;
+  padding: 15px;
+  background: #f6ffed;
+  border-radius: 6px;
+  border-left: 3px solid #52c41a;
+}
+
+.tip-box p {
+  margin: 5px 0;
+}
+
+.note {
+  color: #666;
+  font-style: italic;
+  font-size: 14px;
+}
+
+/* 表格样式 */
+.shot-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 15px;
+  font-size: 14px;
+}
+
+.shot-table thead {
+  background: #f5f5f5;
+}
+
+.shot-table th,
+.shot-table td {
+  padding: 10px;
+  text-align: left;
+  border: 1px solid #e8e8e8;
+}
+
+.shot-table th {
+  font-weight: 600;
+  color: #333;
+}
+
+.shot-table tbody tr:hover {
+  background: #fafafa;
+}
+
+/* 强调文本样式 */
+.emphasis {
+  font-weight: 600;
+  color: var(--primary-color);
+}
+
+.highlight-text {
+  font-size: 16px;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+/* 洞察框样式 */
+.insight-box {
+  margin-top: 15px;
+  padding: 15px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border-radius: 8px;
+}
+
+.insight-box p {
+  margin: 8px 0;
+}
+
+/* 特性列表样式 */
+.feature-list {
+  list-style: none;
+  padding: 0;
+  margin-top: 15px;
+}
+
+.feature-list li {
+  padding: 10px 15px;
+  margin-bottom: 8px;
+  background: white;
+  border-left: 3px solid var(--primary-color);
+  border-radius: 4px;
+}
+
+/* 链接样式 */
+.course-detail a {
+  color: var(--primary-color);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: border-bottom-color 0.3s ease;
+}
+
+.course-detail a:hover {
+  border-bottom-color: var(--primary-color);
+}
+
+/* 折叠面板内容区域样式 */
+.accordion-content-inner {
+  line-height: 1.8;
+  color: var(--text-primary);
+}
+
+.accordion-content-inner h4 {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-top: var(--spacing-md);
+  margin-bottom: var(--spacing-sm);
+}
+
+.accordion-content-inner h5 {
+  font-size: 16px;
+  font-weight: 600;
+  color: #333;
+  margin-top: var(--spacing-md);
+  margin-bottom: var(--spacing-sm);
+  padding-left: 12px;
+  border-left: 3px solid var(--primary-color);
+}
+
+.accordion-content-inner h6 {
+  font-size: 15px;
+  font-weight: 600;
+  color: #555;
+  margin-top: var(--spacing-sm);
+  margin-bottom: var(--spacing-xs);
+}
+
+.accordion-content-inner p {
+  margin-bottom: var(--spacing-sm);
+}
+
+.accordion-content-inner ul,
+.accordion-content-inner ol {
+  margin: var(--spacing-sm) 0;
+  padding-left: var(--spacing-lg);
+}
+
+.accordion-content-inner li {
+  margin-bottom: var(--spacing-xs);
+}
+
+.accordion-content-inner code {
+  background: #f5f5f5;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-family: 'Courier New', monospace;
+  font-size: 14px;
+}
+
+.accordion-content-inner strong {
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
+/* 子区块样式优化 */
+.sub-section {
+  margin-top: var(--spacing-md);
+  padding: var(--spacing-md);
+  background: #fafafa;
+  border-radius: 8px;
+  border-left: 3px solid var(--border-color);
+}
+
+.sub-section h5 {
+  margin-top: 0;
+}
+
+/* 改进卡片间距 */
+.content-section {
+  margin-bottom: var(--spacing-xl);
+  padding-bottom: var(--spacing-lg);
+}
+
+/* 改进课程列表项 */
+.lesson-item {
+  padding: var(--spacing-md);
+  margin-bottom: var(--spacing-sm);
+  border-radius: var(--radius-md);
+  transition: all 0.3s ease;
+}
+
+.lesson-item:hover {
+  transform: translateX(6px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
