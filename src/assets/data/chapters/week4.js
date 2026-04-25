@@ -1,7 +1,6 @@
 import lapianSourceHtml from '../../../ai_studio_code (3).html?raw'
 import lapianShotImage from '../../../image1.png'
 import lapianBannerImage from '../../../image2.png'
-import lapianPracticeVideo from '../../../拉片实操视频2.mp4'
 
 const lapianStyle = lapianSourceHtml.match(/<style[^>]*>[\s\S]*?<\/style>/i)?.[0] || ''
 const lapianBody = lapianSourceHtml.match(/<body[^>]*>([\s\S]*?)<\/body>/i)?.[1] || lapianSourceHtml
@@ -17,7 +16,7 @@ const lapianBodyWithAllImages = lapianBodyNoTextBlock
   )
   .replace(
     '[截图：飞书表格工具使用界面演示]',
-    `<video src="${lapianPracticeVideo}" controls preload="metadata" style="width:100%;height:auto;display:block;border-radius:8px;background:#000;object-fit:contain;"></video>`
+    `<video src="https://res.pandateacher.com/IKOEODJP1777028940023.mp4" controls preload="metadata" style="width:100%;height:auto;display:block;border-radius:8px;background:#000;object-fit:contain;"></video>`
   )
   .replace(
     '[视频封面图：AI 影像课程 - 1]',

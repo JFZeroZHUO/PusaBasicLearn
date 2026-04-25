@@ -846,7 +846,7 @@ export const week1Chapters = [
         badge: '必学',
         title: '即梦-图生视频：教学基础1',
         description: '学习如何使用即梦将图片转化为视频，并快速写出基础动效提示词',
-        videoUrl: '/course-videos/image-to-video-basics-1.mp4',
+        videoUrl: 'https://res.pandateacher.com/9W8SHHZI1777028981575.mp4',
         items: [
           '运镜移动示例：镜头缓慢向前推进，轻微右移，保持主体居中，电影感稳定运镜。',
           '物品动作示例：女孩抬头眨眼，头发被微风轻轻吹动，树叶缓慢飘落，远处路灯轻微闪烁。',
@@ -859,7 +859,7 @@ export const week1Chapters = [
         title: '即梦/可灵首尾帧：教学基础2',
         description: '（不一定要用，但需要知道什么是首尾帧）',
         descriptionHighlight: '首尾帧，就是用两张图，生成一段图1到图2的自然过渡视频',
-        videoUrl: '/course-videos/first-last-frame-basics-2.mp4'
+        videoUrl: 'https://res.pandateacher.com/MRVBQS1T1777030217557.mp4'
       }
     ],
     practiceTasks: [
@@ -869,10 +869,10 @@ export const week1Chapters = [
         description: '确保第1步生成的4张图片故事连贯、风格统一',
         example: '检查角色造型是否一致、场景风格是否统一、画面质量是否清晰',
         exampleImages: [
-          '/example-images/story-shot-1.png',
-          '/example-images/story-shot-2.png',
-          '/example-images/story-shot-3.png',
-          '/example-images/story-shot-4.png'
+          'https://res.pandateacher.com/Q21RUF511777028941059.png',
+          'https://res.pandateacher.com/N5RD74OE1777028941134.png',
+          'https://res.pandateacher.com/WY6EH3VS1777028940802.png',
+          'https://res.pandateacher.com/5XJN4YU41777028940778.png'
         ]
       },
       {
@@ -889,10 +889,10 @@ export const week1Chapters = [
         title: '生成4个视频片段',
         description: '将每张图片转化为5-10秒的视频片段',
         exampleVideos: [
-          '/example-videos/video-shot-1.mp4',
-          '/example-videos/video-shot-2.mp4',
-          '/example-videos/video-shot-3.mp4',
-          '/example-videos/video-shot-4.mp4'
+          'https://res.pandateacher.com/IIQHP8KD1777106481515.mp4',
+          'https://res.pandateacher.com/J4AH2ZPX1777106481516.mp4',
+          'https://res.pandateacher.com/ESD6FKR61777106481516.mp4',
+          'https://res.pandateacher.com/B3A7VC8Q1777106481516.mp4'
         ],
         actionText: '继续生成视频'
       }
@@ -2648,11 +2648,14 @@ export const week1Chapters = [
     .week3-lesson2 .td-good { color: #047857; font-weight: bold; background: #f0fdf4; }
     .week3-lesson2 .td-bad { color: #b91c1c; font-weight: bold; background: #fef2f2; }
     .week3-lesson2 .hl-yellow {
-        background-image: linear-gradient(transparent 55%, rgba(253, 224, 71, 0.6) 55%);
-        color: inherit;
+        background-color: rgba(253, 224, 71, 0.25);
+        background-image: linear-gradient(transparent 55%, rgba(253, 224, 71, 0.4) 55%);
+        color: #fef08a;
         font-weight: 800;
-        padding: 0 2px;
-        border-radius: 2px;
+        padding: 4px 8px;
+        border-radius: 4px;
+        box-shadow: 0 0 15px rgba(253, 224, 71, 0.3);
+        border: 1px solid rgba(253, 224, 71, 0.4);
     }
     .week3-lesson2 .text-hl {
         color: #4f46e5;
