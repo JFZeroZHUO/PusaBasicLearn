@@ -1,5 +1,29 @@
-# Vue 3 + Vite
+# Pusa Learning Platform (Next.js)
 
-This template should help get you started developing with Vue 3 in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+This project has been migrated to the `code-template-main` Next.js framework structure.
 
-Learn more about IDE Support for Vue in the [Vue Docs Scaling up Guide](https://vuejs.org/guide/scaling-up/tooling.html#ide-support).
+## Stack
+
+- Next.js (App Router)
+- React + TypeScript
+- Ant Design
+
+## Run
+
+```bash
+npm install
+npm run dev
+```
+
+Default local URL: `http://127.0.0.1:5173`
+
+## Build
+
+```bash
+npm run build
+npm run start
+```
+
+## Legacy Course Runtime
+
+Course pages are served through `public/legacy` static assets and mounted by Next routes in `src/app`.

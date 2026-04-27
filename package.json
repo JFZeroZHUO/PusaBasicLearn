@@ -4,30 +4,21 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "npm run build:legacy && npm run sync:legacy && next dev -p 5173",
-    "build": "npm run build:legacy && npm run sync:legacy && next build",
+    "dev": "next dev -p 5173",
+    "build": "next build",
     "start": "next start -p 5173",
-    "lint": "next lint",
-    "build:legacy": "vite build",
-    "sync:legacy": "node scripts/sync-legacy-build.mjs",
-    "dev:legacy": "vite",
-    "preview:legacy": "vite preview"
+    "lint": "next lint"
   },
   "dependencies": {
     "@ant-design/icons": "^6.1.0",
     "@ant-design/nextjs-registry": "^1.0.0",
-    "element-plus": "^2.13.6",
     "mysql2": "^3.11.0",
     "antd": "^6.1.3",
     "next": "^15.5.9",
-    "pinia": "^3.0.4",
     "react": "^18",
-    "react-dom": "^18",
-    "vue": "^3.5.30",
-    "vue-router": "^4.6.4"
+    "react-dom": "^18"
   },
   "devDependencies": {
-    "@vitejs/plugin-vue": "^6.0.5",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
@@ -40,7 +31,6 @@
     "eslint-config-next": "14.2.5",
     "tailwindcss": "^3.4.1",
     "tsx": "^4.20.3",
-    "typescript": "^5",
-    "vite": "^8.0.1"
+    "typescript": "^5"
   }
 }
