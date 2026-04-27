@@ -1,4 +1,4 @@
-image: m.daocloud.io/docker.io/library/node:22-alpine
+image: ${LAUNCHER_CICD_IMAGE}
 
 default:
   tags:
