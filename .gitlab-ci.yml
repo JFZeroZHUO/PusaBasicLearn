@@ -42,6 +42,8 @@ test:
 
 deploy:
   stage: deploy
+  tags:
+    - office
   needs:
     - build
   dependencies:
