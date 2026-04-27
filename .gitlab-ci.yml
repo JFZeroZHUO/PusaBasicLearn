@@ -23,6 +23,7 @@ build:
     expire_in: 1 week
     when: on_success
     paths:
-      - .next/standalone/
       - .next/static/
-      - public/legacy/
+      - public/legacy/index.html
+      - public/legacy/assets/*.js
+      - public/legacy/assets/*.css
