@@ -1,12 +1,16 @@
 image: m.daocloud.io/docker.io/library/node:22-alpine
 
 stages:
-  - build
   - test
+  - build
   - deploy
 
 variables:
   NEXT_TELEMETRY_DISABLED: "1"
+  GIT_DEPTH: "1"
+  GIT_LFS_SKIP_SMUDGE: "1"
+  NPM_CONFIG_AUDIT: "false"
+  NPM_CONFIG_FUND: "false"
 
 cache:
   key:
@@ -18,7 +22,7 @@ cache:
 build:
   stage: build
   script:
-    - npm ci --include=optional --cache .npm --prefer-offline
+    - npm ci --include=optional --cache .npm --prefer-offline --progress=false
     - npm run build
   artifacts:
     name: "build-$CI_COMMIT_REF_SLUG-$CI_COMMIT_SHORT_SHA"
@@ -33,7 +37,7 @@ build:
 test:
   stage: test
   script:
-    - npm ci --include=optional --cache .npm --prefer-offline
+    - npm ci --include=optional --cache .npm --prefer-offline --progress=false
     - npx tsc --noEmit
 
 deploy:
