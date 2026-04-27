@@ -25,7 +25,12 @@ cache:
 
 build:
   stage: build
+  image:
+    name: ${NODE_CICD_IMAGE}
+    entrypoint: [""]
   script:
+    - node -v
+    - npm -v
     - npm ci --include=optional --cache .npm --prefer-offline --progress=false
     - npm run build
   artifacts:
@@ -40,12 +45,18 @@ build:
 
 test:
   stage: test
+  image:
+    name: ${NODE_CICD_IMAGE}
+    entrypoint: [""]
   script:
+    - node -v
+    - npm -v
     - npm ci --include=optional --cache .npm --prefer-offline --progress=false
     - npx tsc --noEmit
 
 deploy:
   stage: deploy
+  image: ${LAUNCHER_CICD_IMAGE}
   tags:
     - office
   needs:
