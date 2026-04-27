@@ -1,5 +1,9 @@
 image: m.daocloud.io/docker.io/library/node:22-alpine
 
+default:
+  tags:
+    - office
+
 stages:
   - test
   - build
