@@ -15,6 +15,7 @@ out
 public/assets
 code-template-main
 *.local
+*.tsbuildinfo
 
 # Editor directories and files
 .vscode/*

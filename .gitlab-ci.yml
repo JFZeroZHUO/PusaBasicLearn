@@ -2,6 +2,8 @@ image: m.daocloud.io/docker.io/library/node:22-alpine
 
 stages:
   - build
+  - test
+  - deploy
 
 variables:
   NEXT_TELEMETRY_DISABLED: "1"
@@ -27,3 +29,24 @@ build:
       - public/legacy/index.html
       - public/legacy/assets/*.js
       - public/legacy/assets/*.css
+
+test:
+  stage: test
+  script:
+    - npm ci --include=optional --cache .npm --prefer-offline
+    - npx tsc --noEmit
+
+deploy:
+  stage: deploy
+  needs:
+    - build
+  dependencies:
+    - build
+  rules:
+    - if: '$CI_COMMIT_BRANCH == "main"'
+      when: manual
+    - when: never
+  allow_failure: true
+  script:
+    - echo "Deploy job is ready. Set DEPLOY_COMMAND in CI variables to run real deploy."
+    - if [ -n "$DEPLOY_COMMAND" ]; then sh -lc "$DEPLOY_COMMAND"; else echo "No DEPLOY_COMMAND configured, skip deploy."; fi
