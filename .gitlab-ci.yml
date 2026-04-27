@@ -3,6 +3,9 @@ image: m.daocloud.io/docker.io/library/node:22-alpine
 stages:
   - build
 
+variables:
+  NEXT_TELEMETRY_DISABLED: "1"
+
 cache:
   key:
     files:
@@ -15,8 +18,3 @@ build:
   script:
     - npm ci --cache .npm --prefer-offline
     - npm run build
-  artifacts:
-    expire_in: 1 week
-    paths:
-      - .next/
-      - public/
