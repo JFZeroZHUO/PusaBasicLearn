@@ -18,3 +18,11 @@ build:
   script:
     - npm ci --cache .npm --prefer-offline
     - npm run build
+  artifacts:
+    name: "build-$CI_COMMIT_REF_SLUG-$CI_COMMIT_SHORT_SHA"
+    expire_in: 1 week
+    when: on_success
+    paths:
+      - .next/standalone/
+      - .next/static/
+      - dist/
