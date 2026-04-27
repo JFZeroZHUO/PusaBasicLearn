@@ -188,14 +188,19 @@
                 <a :href="resource.pdfUrl" target="_blank" class="btn-link">📄 新窗口打开PDF</a>
                 <span>支持网页内滚动翻页</span>
               </div>
-              <details class="resource-pdf-details">
+              <details class="resource-pdf-details" open>
                 <summary>📖 点击展开在线预览</summary>
-                <iframe
-                  :src="getPdfPreviewUrl(resource.pdfUrl)"
+                <object
+                  :data="getPdfPreviewUrl(resource.pdfUrl)"
+                  type="application/pdf"
                   class="resource-pdf-frame"
-                  title="课程PDF讲义"
-                  loading="lazy"
-                ></iframe>
+                >
+                  <iframe
+                    :src="getPdfPreviewUrl(resource.pdfUrl)"
+                    class="resource-pdf-frame"
+                    title="课程PDF讲义"
+                  ></iframe>
+                </object>
               </details>
             </div>
           </div>
@@ -726,7 +731,7 @@
 </template>
 
 <script setup>
-import { ref, computed, nextTick } from 'vue'
+import { ref, computed, nextTick, watch } from 'vue'
 import { useChapterProgressStore } from '../stores/chapterProgress'
 
 const props = defineProps({
@@ -875,6 +880,7 @@ const getResourceGuide = (resource) => {
 const getPdfPreviewUrl = (pdfUrl) => {
   const url = String(pdfUrl || '')
   if (!url) return url
+  if (/^https?:\/\//.test(url)) return url
   if (url.includes('view=') || url.includes('zoom=')) return url
   return `${url}${url.includes('#') ? '&' : '#'}view=FitH&zoom=page-fit&pagemode=none`
 }
@@ -1051,9 +1057,16 @@ const formattedLearningIntro = computed(() => {
     .join('')
 })
 
-if (chapterStatus.value.completed) {
-  isCompleted.value = true
+const syncTaskStatus = () => {
+  taskChecked.value = chapterStatus.value.taskChecked
+  isCompleted.value = chapterStatus.value.completed
 }
+
+watch(
+  () => [props.weekId, props.chapter.id],
+  syncTaskStatus,
+  { immediate: true }
+)
 
 const showCtaModal = ref(false)
 const showCopyHint = ref(false)
@@ -1064,6 +1077,15 @@ const onTaskCheck = () => {
   if (taskChecked.value) {
     progressStore.completeChapterTask(props.weekId, props.chapter.id)
     progressStore.completeChapter(props.weekId, props.chapter.id)
+    if (props.chapter.bonusDocument?.url) {
+      progressStore.unlockBonusDocument({
+        ...props.chapter.bonusDocument,
+        id: `${props.weekId}-${props.chapter.id}`,
+        weekId: props.weekId,
+        chapterId: props.chapter.id,
+        sourceTitle: props.chapter.title
+      })
+    }
     isCompleted.value = true
     emit('chapter-complete', props.chapter.id)
     if (props.chapter.ctaModalHtml) {
@@ -3135,11 +3157,76 @@ const copyHintStyle = computed(() => ({
 }
 
 .ai-assist-card {
-  background: #f0f5ff;
-  border: 1px solid #adc6ff;
+  position: relative;
+  overflow: hidden;
+  background:
+    linear-gradient(120deg, rgba(255, 255, 255, 0.88), rgba(255, 255, 255, 0.58)) padding-box,
+    linear-gradient(120deg, #6aa9ff, #b56dff, #35d6c5, #6aa9ff) border-box;
+  background-size: 100% 100%, 280% 280%;
+  border: 1px solid transparent;
   border-radius: 8px;
   padding: 16px;
   margin: 16px 0;
+  box-shadow: 0 10px 26px rgba(24, 144, 255, 0.16);
+  transform: translateY(0);
+  animation: aiAssistBreath 3.2s ease-in-out infinite;
+  isolation: isolate;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.ai-assist-card::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  background: linear-gradient(115deg, transparent 0%, rgba(255, 255, 255, 0.55) 42%, transparent 68%);
+  transform: translateX(-110%);
+  animation: aiAssistShine 3.2s ease-in-out infinite;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.ai-assist-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 16px 34px rgba(24, 144, 255, 0.24);
+}
+
+.ai-assist-details {
+  position: relative;
+  z-index: 1;
+}
+
+.ai-assist-summary {
+  cursor: pointer;
+}
+
+@keyframes aiAssistBreath {
+  0%,
+  100% {
+    background-position: 0 0, 0% 50%;
+    box-shadow: 0 10px 26px rgba(24, 144, 255, 0.14);
+  }
+
+  50% {
+    background-position: 0 0, 100% 50%;
+    box-shadow: 0 14px 34px rgba(181, 109, 255, 0.24);
+  }
+}
+
+@keyframes aiAssistShine {
+  0%,
+  58% {
+    transform: translateX(-110%);
+    opacity: 0;
+  }
+
+  68% {
+    opacity: 1;
+  }
+
+  100% {
+    transform: translateX(110%);
+    opacity: 0;
+  }
 }
 
 .ai-assist-header {

@@ -695,7 +695,7 @@ export const week1Chapters = [
           '建议先看回放，再结合下面PDF逐页梳理四镜头结构。',
           '如果回放链接异常，可先阅读PDF讲义。'
         ],
-        pdfUrl: '/course-materials/4loxu3ot0uf0ml4.pdf'
+        pdfUrl: 'https://res.pandateacher.com/CXVSEPCG1777257677544.pdf'
       },
       {
         type: 'required',
@@ -1139,6 +1139,11 @@ export const week1Chapters = [
         </div>
     </div>
     `,
+    bonusDocument: {
+      title: '《摄影提示词结构范式》',
+      description: '野菩萨教研团队独家整理的 AI 摄影提示词密码本',
+      url: 'https://docs.qq.com/sheet/DSXRNUGJIQ0tMWkhu?tab=BB08J2'
+    },
     objectives: [
       '理解"提示词是权重而非命令"的核心逻辑',
       '掌握控制时间观感、注意力焦点、镜头关系的技巧',
@@ -1974,6 +1979,64 @@ export const week1Chapters = [
         color: #065f46;
     }
 
+    .week3-lesson1 .shot-example-card {
+        margin-top: 18px;
+        background: #ffffff;
+        border: 1px solid #bfdbfe;
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 10px 24px rgba(37, 99, 235, 0.08);
+    }
+
+    .week3-lesson1 .shot-example-card img {
+        display: block;
+        width: 100%;
+        aspect-ratio: 16 / 9;
+        object-fit: cover;
+        background: #e2e8f0;
+    }
+
+    .week3-lesson1 .shot-prompt-box,
+    .week3-lesson1 .shot-analysis-box {
+        padding: 16px 18px;
+    }
+
+    .week3-lesson1 .shot-prompt-box {
+        background: #eff6ff;
+        border-bottom: 1px solid #bfdbfe;
+    }
+
+    .week3-lesson1 .shot-prompt-box h4,
+    .week3-lesson1 .shot-analysis-box h4 {
+        margin: 0 0 8px 0;
+        color: #1e3a8a;
+        font-size: 1rem;
+        font-weight: 900;
+    }
+
+    .week3-lesson1 .shot-prompt-box p {
+        margin: 0;
+        color: #334155;
+        font-size: 0.95rem;
+        line-height: 1.75;
+    }
+
+    .week3-lesson1 .shot-analysis-box ul {
+        margin: 0;
+        padding-left: 20px;
+    }
+
+    .week3-lesson1 .shot-analysis-box li {
+        margin-bottom: 6px;
+        color: #475569;
+        font-size: 0.92rem;
+        line-height: 1.65;
+    }
+
+    .week3-lesson1 .shot-analysis-box strong {
+        color: #1d4ed8;
+    }
+
     .week3-lesson1 .film-highlight {
         background-image: linear-gradient(transparent 50%, var(--highlight-yellow) 50%);
         color: var(--text-title);
@@ -2223,6 +2286,22 @@ export const week1Chapters = [
                         <div class="bad">❌ <strong>各说各话：</strong>A的单人照 ➡️ B的单人照。（观众：这俩人是在发视频通话吗？）</div>
                         <div class="good" style="color: #1d4ed8;">✅ <strong>完美对话：</strong>过肩拍 <span>(越过A的肩膀，拍B听话的脸)</span> ➡️ 过肩拍 <span>(越过B的肩膀，拍A说话的脸)</span> ➡️ 中景 <span>(两人在同一画面里对峙)</span>。空间感立刻建立，火药味十足！</div>
                     </div>
+                    <div class="shot-example-card">
+                        <img src="https://res.pandateacher.com/W4IMDOWR1777259995618.png" alt="正反打过肩拍示例图">
+                        <div class="shot-prompt-box">
+                            <h4>过肩拍提示词示例</h4>
+                            <p>过肩镜头，从一个穿深色夹克的男人背后拍摄。焦点对准一个神情疲惫、头发凌乱及肩的女人，她双手捧着热咖啡杯。深夜复古餐厅，温暖的钨丝灯光，背景是模糊的带雨滴的窗户，电影级调色，浅景深，细节丰富。</p>
+                        </div>
+                        <div class="shot-analysis-box">
+                            <h4>核心提示词解析：</h4>
+                            <ul>
+                                <li><strong>Over-the-shoulder shot:</strong> 过肩拍（核心视角）。</li>
+                                <li><strong>From behind [A]:</strong> 从A的背后/肩膀后方拍（构建前景）。</li>
+                                <li><strong>Focus on [B]:</strong> 焦点对准B（清晰的主体）。</li>
+                                <li><strong>Shallow depth of field:</strong> 浅景深（虚化前景的肩膀，突出对话感）。</li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="rule-box" style="border-left-color: #10b981;">
@@ -2350,6 +2429,11 @@ export const week1Chapters = [
         </div>
       </div>
     `,
+    bonusDocument: {
+      title: '《AI景别参考资料》',
+      description: '景别练习推荐资料，帮助把镜头语言落到实战出图',
+      url: 'https://forchangesz.feishu.cn/wiki/EYwBww0XGi3SdYk8DXycTdY8nSP?from=from_copylink'
+    },
     chapterTask: {
       description: '我已完成第1课学习，并认识并应用景别来生成图片'
     }
@@ -3505,6 +3589,11 @@ export const week1Chapters = [
         </div>
       </div>
     `,
+    bonusDocument: {
+      title: '《AI运镜提示词》',
+      description: '山雨老师分享的可直接套用 AI 运镜提示词',
+      url: 'https://forchangesz.feishu.cn/docx/AA8MdQDZio7sLkx2W7YcNWuKntc?from=from_copylink'
+    },
     chapterTask: {
       description: '我已经学会了【运镜】！'
     }

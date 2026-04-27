@@ -5,6 +5,9 @@
       <p>新手入门学习路径</p>
     </header>
 
+    <div class="home-layout">
+      <div class="home-main">
+
     <div class="progress-dashboard card">
       <div class="dashboard-header">
         <h2>📊 学习进度</h2>
@@ -65,6 +68,41 @@
         </div>
       </div>
     </div>
+      </div>
+
+      <aside class="bonus-collection card">
+        <div class="bonus-header">
+          <div>
+            <p class="bonus-kicker">彩蛋收集栏</p>
+            <h2>🎁 已解锁文档</h2>
+          </div>
+          <span class="bonus-count">{{ unlockedBonusDocuments.length }}</span>
+        </div>
+
+        <div v-if="unlockedBonusDocuments.length" class="bonus-list">
+          <a
+            v-for="document in unlockedBonusDocuments"
+            :key="document.id"
+            :href="document.url"
+            target="_blank"
+            rel="noopener"
+            class="bonus-item"
+          >
+            <span class="bonus-doc-icon">📄</span>
+            <span class="bonus-doc-body">
+              <strong>{{ document.title }}</strong>
+              <small>{{ document.sourceTitle || document.description }}</small>
+            </span>
+            <span class="bonus-arrow">↗</span>
+          </a>
+        </div>
+
+        <div v-else class="bonus-empty">
+          <div class="bonus-empty-icon">✨</div>
+          <p>完成带彩蛋的章节任务后，文档会自动收进这里。</p>
+        </div>
+      </aside>
+    </div>
   </div>
 </template>
 
@@ -116,6 +154,51 @@ const displayCourses = computed(() => {
     }
   })
   return list
+})
+
+const knownBonusChapters = computed(() => {
+  const week3Order = ['chapter8', 'chapter10', 'chapter9']
+  return [
+    ...week1Chapters.map(chapter => ({ weekId: 'week1', chapter })),
+    ...week3Order
+      .map(id => week1Chapters.find(chapter => chapter.id === id))
+      .filter(Boolean)
+      .map(chapter => ({ weekId: 'week3', chapter })),
+    ...week4Chapters.map(chapter => ({ weekId: 'week4', chapter }))
+  ]
+})
+
+const unlockedBonusDocuments = computed(() => {
+  const documents = new Map()
+
+  chapterProgressStore.unlockedBonusDocuments.forEach((document) => {
+    documents.set(document.id, document)
+  })
+
+  knownBonusChapters.value.forEach(({ weekId, chapter }) => {
+    if (!chapter.bonusDocument?.url) return
+    const weekProgress = chapterProgressStore.getWeekProgress(weekId)
+    const completedAt = weekProgress.chapters?.[chapter.id]?.completedAt
+    if (!weekProgress.chapters?.[chapter.id]?.completed) return
+
+    const id = `${weekId}-${chapter.id}`
+    if (!documents.has(id)) {
+      documents.set(id, {
+        id,
+        weekId,
+        chapterId: chapter.id,
+        title: chapter.bonusDocument.title || '彩蛋文档',
+        description: chapter.bonusDocument.description || '',
+        url: chapter.bonusDocument.url,
+        sourceTitle: chapter.title,
+        unlockedAt: completedAt || new Date(0).toISOString()
+      })
+    }
+  })
+
+  return Array.from(documents.values())
+    .filter(document => document?.url)
+    .sort((a, b) => new Date(a.unlockedAt || 0) - new Date(b.unlockedAt || 0))
 })
 
 const getWeekProgress = (weekId) => {
@@ -235,6 +318,14 @@ const goToCourse = (item) => {
   max-width: 1000px;
   margin: 0 auto;
   padding: 40px 20px;
+}
+
+.home-layout {
+  position: relative;
+}
+
+.home-main {
+  min-width: 0;
 }
 
 .hero {
@@ -433,9 +524,163 @@ const goToCourse = (item) => {
   font-weight: 600;
 }
 
+.bonus-collection {
+  position: fixed;
+  top: 208px;
+  right: calc((100vw - 1000px) / 2 - 344px);
+  width: 320px;
+  max-height: calc(100vh - 232px);
+  overflow: auto;
+  z-index: 20;
+  padding: 20px;
+  border: 1px solid rgba(250, 173, 20, 0.35);
+  background: linear-gradient(180deg, #fffdf5 0%, #ffffff 72%);
+  box-shadow: 0 10px 30px rgba(250, 173, 20, 0.12);
+}
+
+.bonus-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.bonus-kicker {
+  margin: 0 0 4px 0;
+  font-size: 12px;
+  font-weight: 700;
+  color: #ad6800;
+}
+
+.bonus-header h2 {
+  margin: 0;
+  font-size: 20px;
+  color: #1f1f1f;
+}
+
+.bonus-count {
+  min-width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: #fff7e6;
+  color: #d46b08;
+  border: 1px solid #ffd591;
+  font-weight: 800;
+}
+
+.bonus-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.bonus-item {
+  display: grid;
+  grid-template-columns: 34px minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 10px;
+  padding: 12px;
+  border-radius: 8px;
+  border: 1px solid #ffe7ba;
+  background: rgba(255, 255, 255, 0.92);
+  color: #262626;
+  text-decoration: none;
+  transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.bonus-item:hover {
+  transform: translateY(-2px);
+  border-color: #faad14;
+  box-shadow: 0 8px 18px rgba(250, 173, 20, 0.16);
+}
+
+.bonus-doc-icon {
+  width: 34px;
+  height: 34px;
+  border-radius: 8px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: #fff7e6;
+  font-size: 18px;
+}
+
+.bonus-doc-body {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.bonus-doc-body strong {
+  overflow: hidden;
+  color: #1f1f1f;
+  font-size: 14px;
+  line-height: 1.35;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.bonus-doc-body small {
+  overflow: hidden;
+  color: #8c8c8c;
+  font-size: 12px;
+  line-height: 1.4;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.bonus-arrow {
+  color: #d46b08;
+  font-weight: 800;
+}
+
+.bonus-empty {
+  min-height: 180px;
+  border: 1px dashed #ffd591;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 20px;
+  text-align: center;
+  color: #8c6d1f;
+  background: rgba(255, 251, 230, 0.58);
+}
+
+.bonus-empty-icon {
+  font-size: 28px;
+}
+
+.bonus-empty p {
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+@media (max-width: 1700px) {
+  .bonus-collection {
+    position: static;
+    width: auto;
+    max-height: none;
+    overflow: visible;
+    margin-bottom: 24px;
+  }
+}
+
 @media (max-width: 768px) {
   .home-page {
     padding: 20px 16px;
+  }
+
+  .bonus-collection {
+    margin-bottom: 20px;
   }
 
   .hero h1 {

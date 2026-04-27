@@ -5,6 +5,13 @@ export const useChapterProgressStore = defineStore('chapterProgress', () => {
   // 章节进度数据
   const chapterProgress = ref({})
 
+  const ensureBonusDocuments = () => {
+    if (!chapterProgress.value.bonusDocuments) {
+      chapterProgress.value.bonusDocuments = {}
+    }
+    return chapterProgress.value.bonusDocuments
+  }
+
   // 从本地存储加载进度
   const loadProgress = () => {
     try {
@@ -100,6 +107,31 @@ export const useChapterProgressStore = defineStore('chapterProgress', () => {
   }
 
   // 计算周的完成进度
+  const unlockBonusDocument = (document) => {
+    if (!document?.url) return
+
+    const bonusDocuments = ensureBonusDocuments()
+    const id = document.id || `${document.weekId || 'week'}-${document.chapterId || document.url}`
+    bonusDocuments[id] = {
+      id,
+      weekId: document.weekId || null,
+      chapterId: document.chapterId || null,
+      title: document.title || '彩蛋文档',
+      description: document.description || '',
+      url: document.url,
+      sourceTitle: document.sourceTitle || '',
+      unlockedAt: bonusDocuments[id]?.unlockedAt || new Date().toISOString()
+    }
+    saveProgress()
+  }
+
+  const unlockedBonusDocuments = computed(() => {
+    const bonusDocuments = ensureBonusDocuments()
+    return Object.values(bonusDocuments)
+      .filter(document => document?.url)
+      .sort((a, b) => new Date(a.unlockedAt || 0) - new Date(b.unlockedAt || 0))
+  })
+
   const calculateWeekProgress = (weekId, totalChapters) => {
     const weekData = getWeekProgress(weekId)
     const chapters = weekData.chapters
@@ -159,6 +191,8 @@ export const useChapterProgressStore = defineStore('chapterProgress', () => {
     setCurrentChapter,
     completeChapterTask,
     completeChapter,
+    unlockBonusDocument,
+    unlockedBonusDocuments,
     calculateWeekProgress,
     getNextChapter,
     resetWeekProgress,
