@@ -1,73 +1,22 @@
 image: ${LAUNCHER_CICD_IMAGE}
 
-default:
-  tags:
-    - office
-
 stages:
-  - test
-  - build
-  - deploy
+  - setup
+  - running
 
-variables:
-  NEXT_TELEMETRY_DISABLED: "1"
-  GIT_DEPTH: "1"
-  GIT_LFS_SKIP_SMUDGE: "1"
-  NPM_CONFIG_AUDIT: "false"
-  NPM_CONFIG_FUND: "false"
-
-cache:
-  key:
-    files:
-      - package-lock.json
-  paths:
-    - .npm/
-
-build:
-  stage: build
-  image:
-    name: ${NODE_CICD_IMAGE}
-    entrypoint: [""]
-  script:
-    - node -v
-    - npm -v
-    - npm ci --include=optional --cache .npm --prefer-offline --progress=false
-    - npm run build
+bootstrap:
+  stage: setup
+  script: bootstrap
   artifacts:
-    name: "build-$CI_COMMIT_REF_SLUG-$CI_COMMIT_SHORT_SHA"
-    expire_in: 1 week
-    when: on_success
     paths:
-      - .next/static/
-      - public/legacy/index.html
-      - public/legacy/assets/*.js
-      - public/legacy/assets/*.css
-
-test:
-  stage: test
-  image:
-    name: ${NODE_CICD_IMAGE}
-    entrypoint: [""]
-  script:
-    - node -v
-    - npm -v
-    - npm ci --include=optional --cache .npm --prefer-offline --progress=false
-    - npx tsc --noEmit
-
-deploy:
-  stage: deploy
-  image: ${LAUNCHER_CICD_IMAGE}
+      - dynamic_pipeline.yml
   tags:
     - office
-  needs:
-    - build
-  dependencies:
-    - build
-  rules:
-    - if: '$CI_COMMIT_BRANCH == "main"'
-      when: manual
-    - when: never
-  allow_failure: true
-  script:
-    - echo "Deploy job is ready. Set DEPLOY_COMMAND in CI variables to run real deploy."
-    - if [ -n "$DEPLOY_COMMAND" ]; then sh -lc "$DEPLOY_COMMAND"; else echo "No DEPLOY_COMMAND configured, skip deploy."; fi
+
+trigger-artifacts:
+  stage: running
+  trigger:
+    strategy: depend
+    include:
+      - artifact: dynamic_pipeline.yml
+        job: bootstrap
